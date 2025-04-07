@@ -207,6 +207,13 @@ const VALID_USERS = {
 
 const webhookUrl = "https://discord.com/api/webhooks/1358816553918922903/d_GmtZ8iHzwLlD01JU76UJa3Kvwmhd5EvQ_P5Vn2wxifIhCmOT6E-usrnBxcINlb-zsj"; // 🔁 remplace par le tien
 
+function generateOrderId(pseudo) {
+  const now = new Date();
+  const dateStr = now.toISOString().replace(/[-:.TZ]/g, "");
+  const random = Math.floor(Math.random() * 10000);
+  return `${pseudo.replace(/\s+/g, '_')}_${dateStr}_${random}`;
+}
+
 function sendOrder() {
   const pseudo = document.getElementById("pseudo").value;
   const code = document.getElementById("code").value;
@@ -218,73 +225,63 @@ function sendOrder() {
 
   const validCode = VALID_USERS[pseudo];
   if (code !== validCode) {
-    // ❌ Code incorrect
-    fetch("https://api.ipify.org?format=json")
-      .then(res => res.json())
-      .then(data => {
-        const ip = data.ip;
-        const content = `🚨 Tentative de code invalide pour **${pseudo}**\nCode saisi: \`${code}\`\nIP: \`${ip}\``;
+    const content = `🚨 Tentative de code invalide pour **${pseudo}**\nCode saisi: \`${code}\`\n🛡️ Aucune IP collectée.`;
 
-        fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content })
-        });
+    fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content })
+    });
 
-        alert("Code invalide. Une alerte a été envoyée.");
-      });
+    alert("Code invalide. Une alerte a été envoyée.");
     return;
   }
 
-  // ✅ Code valide ➜ on récupère l'IP et on envoie la commande
   if (cart.length === 0) {
     alert("Votre panier est vide.");
     return;
   }
 
-  fetch("https://api.ipify.org?format=json")
-    .then(res => res.json())
-    .then(data => {
-      const ip = data.ip;
+  const orderId = generateOrderId(pseudo);
+  let order = `🛒 Nouvelle commande de **${pseudo}** (ID: \`${orderId}\`) :\n`;
+  
+  cart.forEach(item => {
+    order += `- ${item.qty} x ${item.name} (${item.qty * item.price}€)\n`;
+  });
 
-      let order = `🛒 Nouvelle commande de **${pseudo}** (IP: \`${ip}\`) :\n`;
-      cart.forEach(item => {
-        order += `- ${item.qty} x ${item.name} (${item.qty * item.price}€)\n`;
-      });
-      const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
-      order += `\n💰 Total : **${total}€**`;
+  const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+  order += `\n💰 Total : **${total}€**`;
 
-      const payload = {
-        content: order,
+  const payload = {
+    content: order,
+    components: [
+      {
+        type: 1,
         components: [
           {
-            type: 1,
-            components: [
-              {
-                type: 2,
-                style: 3,
-                label: "✅ Valider",
-                custom_id: "valider_commande"
-              },
-              {
-                type: 2,
-                style: 4,
-                label: "❌ Refuser",
-                custom_id: "refuser_commande"
-              }
-            ]
+            type: 2,
+            style: 3,
+            label: "✅ Valider",
+            custom_id: "valider_commande"
+          },
+          {
+            type: 2,
+            style: 4,
+            label: "❌ Refuser",
+            custom_id: "refuser_commande"
           }
         ]
-      };
+      }
+    ]
+  };
 
-      fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+  fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
 
-      alert("Commande envoyée à Discord !");
-      cart.length = 0;
-      renderCart();
-    });
+  alert("Commande envoyée à Discord !");
+  cart.length = 0;
+  renderCart();
 }

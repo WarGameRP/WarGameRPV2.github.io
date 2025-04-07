@@ -192,10 +192,12 @@ function renderCart() {
 
 populateSelects(); 
 const VALID_USERS = {
-  "PiloteAlpha": "alpha123",
-  "Ghost47": "ghostpass",
-  "FalconX": "xsecure",
-  "BlackViper": "viper42"
+  "Admin": "@dmiN1P@ssw0Rds1a",
+  "Ashley Graves": "@GF1oRl#7aG",
+  "Charles Le Gloan": "C#qK8j@LKh",
+  "hover": "NLg@jaLEj#",
+  "Antoine Ramet": "KDH93@hHsf"
+
 };
 
 const webhookUrl = "https://discord.com/api/webhooks/1358816553918922903/d_GmtZ8iHzwLlD01JU76UJa3Kvwmhd5EvQ_P5Vn2wxifIhCmOT6E-usrnBxcINlb-zsj"; // 🔁 remplace par le tien
@@ -229,49 +231,55 @@ function sendOrder() {
     return;
   }
 
-  // ✅ Code valide ➜ envoi de la commande
+  // ✅ Code valide ➜ on récupère l'IP et on envoie la commande
   if (cart.length === 0) {
     alert("Votre panier est vide.");
     return;
   }
 
-  let order = `🛒 Nouvelle commande de **${pseudo}** :\n`;
-  cart.forEach(item => {
-    order += `- ${item.qty} x ${item.name} (${item.qty * item.price}€)\n`;
-  });
-  const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
-  order += `\n💰 Total : **${total}€**`;
+  fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+      const ip = data.ip;
 
-  const payload = {
-    content: order,
-    components: [
-      {
-        type: 1,
+      let order = `🛒 Nouvelle commande de **${pseudo}** (IP: \`${ip}\`) :\n`;
+      cart.forEach(item => {
+        order += `- ${item.qty} x ${item.name} (${item.qty * item.price}€)\n`;
+      });
+      const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+      order += `\n💰 Total : **${total}€**`;
+
+      const payload = {
+        content: order,
         components: [
           {
-            type: 2,
-            style: 3,
-            label: "✅ Valider",
-            custom_id: "valider_commande"
-          },
-          {
-            type: 2,
-            style: 4,
-            label: "❌ Refuser",
-            custom_id: "refuser_commande"
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 3,
+                label: "✅ Valider",
+                custom_id: "valider_commande"
+              },
+              {
+                type: 2,
+                style: 4,
+                label: "❌ Refuser",
+                custom_id: "refuser_commande"
+              }
+            ]
           }
         ]
-      }
-    ]
-  };
+      };
 
-  fetch(webhookUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-  alert("Commande envoyée à Discord !");
-  cart.length = 0;
-  renderCart();
+      alert("Commande envoyée à Discord !");
+      cart.length = 0;
+      renderCart();
+    });
 }

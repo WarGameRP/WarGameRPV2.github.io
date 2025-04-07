@@ -1,8 +1,8 @@
 const weapons = {
   "Air-sol": {
-    "AASM 250 HAMMER (SBU 38)": 500,
-    "AASM 250 HAMMER (SBU 54)": 750,
-    "AASM 250 HAMMER (SBU 64)": 700,
+    "AASM 250 HAMMER SBU 38": 500,
+    "AASM 250 HAMMER SBU 54": 750,
+    "AASM 250 HAMMER SBU 64": 700,
     "Bombe de 100kilo": 50,
     "Bombe de 150kilo": 75,
     "Bombe de 200kilo": 100,

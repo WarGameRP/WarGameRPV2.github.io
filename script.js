@@ -1,5 +1,3 @@
-// 🎯 JS sécurisé pour envoyer une commande sans exposer le webhook ni les mots de passe
-
 const weapons = {
   "Air-sol": {
     "Bombe de 100kilo": 50,
@@ -25,6 +23,7 @@ const weapons = {
     "GBU-38": 1200,
     "GBU-39": 1300
   },
+
   "Anti-air": {
     "AIM-7F": 250,
     "AIM-7M": 300,
@@ -53,6 +52,7 @@ const weapons = {
     "R-77": 800,
     "R-77-1": 900
   },
+
   "Anti-char": {
     "AGM-65D": 500,
     "AGM-65E": 550,
@@ -64,6 +64,7 @@ const weapons = {
     "Kh-29T": 1000,
     "Kh-38": 1100
   },
+
   "Anti-navire": {
     "AGM-84 Harpoon": 1200,
     "AGM-84 Harpoon Block II": 1500,
@@ -74,6 +75,7 @@ const weapons = {
     "RBS-15": 1600,
     "Sea Eagle": 1200
   },
+
   "Missile de croisière": {
     "AGM-84E SLAM": 2000,
     "AGM-84H/K SLAM-ER": 2500,
@@ -85,11 +87,13 @@ const weapons = {
     "SCALP-EG": 4500, 
     "Taurus KEPD 350": 5000
   },
+
   "Missile multi rôles": {
     "AGM-88 HARM": 1500,
     "Kh-58": 1500,
     "Lightweight Multi-role Missile ": 800
   },
+
   "Pods": {
     "AN/ALQ-135": 1500,
     "ALQ-TLS": 1800,
@@ -101,6 +105,7 @@ const weapons = {
     "Pod de désignation TALIOS": 3000,
     "Pod de reconnaissance AREOS": 3500
   },
+
   "Réservoirs": {
     "Réservoir conforme 500 litres": 100,
     "Réservoir conforme 800 litres": 150,
@@ -116,6 +121,7 @@ const weapons = {
     "Réservoir largables 1 800 litres": 450
   }
 };
+
 
 const idMap = {
   "Air-sol": "air-sol",
@@ -184,40 +190,88 @@ function renderCart() {
   document.getElementById("total").textContent = total;
 }
 
+populateSelects(); 
+const VALID_USERS = {
+  "PiloteAlpha": "alpha123",
+  "Ghost47": "ghostpass",
+  "FalconX": "xsecure",
+  "BlackViper": "viper42"
+};
+
+const webhookUrl = "https://discord.com/api/webhooks/1358816553918922903/d_GmtZ8iHzwLlD01JU76UJa3Kvwmhd5EvQ_P5Vn2wxifIhCmOT6E-usrnBxcINlb-zsj"; // 🔁 remplace par le tien
+
 function sendOrder() {
   const pseudo = document.getElementById("pseudo").value;
   const code = document.getElementById("code").value;
 
   if (!pseudo || !code) {
-    alert("Veuillez entrer votre pseudo et le code.");
+    alert("Veuillez sélectionner un pseudo et entrer le code.");
     return;
   }
 
+  const validCode = VALID_USERS[pseudo];
+  if (code !== validCode) {
+    // ❌ Code incorrect
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        const ip = data.ip;
+        const content = `🚨 Tentative de code invalide pour **${pseudo}**\nCode saisi: \`${code}\`\nIP: \`${ip}\``;
+
+        fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content })
+        });
+
+        alert("Code invalide. Une alerte a été envoyée.");
+      });
+    return;
+  }
+
+  // ✅ Code valide ➜ envoi de la commande
   if (cart.length === 0) {
     alert("Votre panier est vide.");
     return;
   }
 
-  fetch("https://backends-g03x.onrender.com", {
+  let order = `🛒 Nouvelle commande de **${pseudo}** :\n`;
+  cart.forEach(item => {
+    order += `- ${item.qty} x ${item.name} (${item.qty * item.price}€)\n`;
+  });
+  const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+  order += `\n💰 Total : **${total}€**`;
+
+  const payload = {
+    content: order,
+    components: [
+      {
+        type: 1,
+        components: [
+          {
+            type: 2,
+            style: 3,
+            label: "✅ Valider",
+            custom_id: "valider_commande"
+          },
+          {
+            type: 2,
+            style: 4,
+            label: "❌ Refuser",
+            custom_id: "refuser_commande"
+          }
+        ]
+      }
+    ]
+  };
+
+  fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      pseudo,
-      code,
-      cart
-    })
-  })
-    .then(response => {
-      if (!response.ok) {
-        return response.text().then(msg => { throw new Error(msg); });
-      }
-      alert("Commande envoyée à Discord !");
-      cart.length = 0;
-      renderCart();
-    })
-    .catch(error => {
-      alert(`Erreur : ${error.message}`);
-    });
-}
+    body: JSON.stringify(payload)
+  });
 
-populateSelects();
+  alert("Commande envoyée à Discord !");
+  cart.length = 0;
+  renderCart();
+}

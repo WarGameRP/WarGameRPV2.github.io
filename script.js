@@ -198,7 +198,7 @@ function sendOrder() {
     return;
   }
 
-  fetch("https://TON_BACKEND_URL.onrender.com/commande", {
+  fetch("https://backends-g03x.onrender.com", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

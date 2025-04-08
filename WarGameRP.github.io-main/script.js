@@ -13,19 +13,46 @@ const weapons = {
     "Bombe de 2 000kg": 1000,
     "Bombe de 3 000kg": 1500,
     "BLU-107": 150,
+    "BLU-126": 125,
+    "Cannon GSh-23L": 300,
     "CBU-103": 200,
     "CBU-104": 250,
     "CBU-105 SFW": 350,
     "CBU-107": 400,
+    "FAB-250M-54": 125,
+    "FAB-250M-62": 125,
+    "FAB-500M-54": 250,
+    "FAB-500M-62": 250,
     "GBU-8": 450,
     "GBU-12": 500,
     "GBU-15": 600,
     "GBU-16": 650,
+    "GBU-22": 600,
     "GBU-24": 800,
     "GBU-31": 1000,
     "GBU-35": 1100,
     "GBU-38": 1200,
-    "GBU-39": 1300
+    "GBU-39": 1300,
+    "GBU-48": 850,
+    "GBU-49": 700,
+    "GBU-54": 850,
+    "KAB-500Kr-E": 850,
+    "KAB-500S": 800,
+    "Kh-25": 700,
+    "Kh-29L": 1100,
+    "Kh-29TD": 1200,
+    "OFAB-100": 50,
+    "OFAB-250-270": 130,
+    "OFAB-250Sh": 130,
+    "OFAB-250Sv": 130,
+    "Paveway IV": 900,
+    "20 x S-8KO": 120,
+    "S-24B": 150,
+    "S-25LD": 600,
+    "5 x S-130F": 175,
+    "S-250": 200,
+    "S-250F": 220,
+    "ZB-500": 250
   },
 
   "Anti-air": {
@@ -34,6 +61,7 @@ const weapons = {
     "AIM-7P": 350,
     "AIM-9P": 200,
     "AIM-9L": 300,
+    "AIM-9L/I-1": 400,
     "AIM-9M": 350,
     "AIM-9X": 500,
     "AIM-120A": 600,
@@ -63,10 +91,14 @@ const weapons = {
     "AGM-65F": 600,
     "AGM-65G": 650,
     "AGM-130A-12": 1200,
+    "Brimstone": 900,
     "Kh-25ML": 800,
     "Kh-25MP": 850,
     "Kh-29T": 1000,
-    "Kh-38": 1100
+    "Kh-29TE": 1250,
+    "Kh-38": 1100,
+    "Kh-38ML": 1300,
+    "Kh-38MT": 1350
   },
 
   "Anti-navire": {
@@ -76,6 +108,7 @@ const weapons = {
     "ASM-3": 1800,
     "Kh-22": 1500,
     "Kh-31": 1500,
+    "Kh-41 Moskit": 1800,
     "RBS-15": 1600,
     "Sea Eagle": 1200
   },
@@ -119,10 +152,13 @@ const weapons = {
     "Réservoir conforme 1 800 litres": 350,
     "Réservoir largables 500 litres": 200,
     "Réservoir largables 800 litres": 250,
+    "Réservoir largable 820 litres": 260,
     "Réservoir largables 1 000 litres": 300,
+    "Réservoir largable 1 250 litres": 335,
     "Réservoir largables 1 300 litres": 350,
     "Réservoir largables 1 500 litres": 400,
-    "Réservoir largables 1 800 litres": 450
+    "Réservoir largables 1 800 litres": 480,
+    "Réservoir largable 2 000 litres": 500
   }
 };
 

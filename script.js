@@ -104,6 +104,7 @@ const weapons = {
     "AGM-65E": 550,
     "AGM-65F": 600,
     "AGM-65G": 650,
+    "AGM-130": 1000,
     "AGM-130A-12": 1200,
     "Brimstone": 900,
     "Kh-25ML": 800,
@@ -178,7 +179,8 @@ const weapons = {
     "Réservoir largable 1 400 litres": 380,
     "Réservoir largable 1 500 litres": 400,
     "Réservoir largable 1 800 litres": 480,
-    "Réservoir largable 2 000 litres": 500
+    "Réservoir largable 2 000 litres": 500,
+    "Réservoir largable 2 300 litres": 540
   }
 };
 

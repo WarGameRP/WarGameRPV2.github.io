@@ -20,7 +20,7 @@ const weapons = {
     "BLU-27/B": 200,
     "BLU-107": 150,
     "BLU-126": 125,
-    "Cannon GSh-23L": 300,
+    "Canon GSh-23L": 300,
     "CBU-103": 200,
     "CBU-104": 250,
     "CBU-105 SFW": 350,

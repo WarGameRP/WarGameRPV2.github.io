@@ -176,7 +176,7 @@ function sendOrder() {
 
       const embed = {
         title: `🛒 Nouvelle commande BlackMarket 👿`,
-        color: 0x6C13EA,
+        color: 0x6C13EA ,
         fields: [
           { name: "👤 Pseudo", value: pseudo, inline: true },
           { name: "🆔 Order ID", value: `\`${orderId}\``, inline: true },

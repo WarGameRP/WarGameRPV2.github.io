@@ -290,7 +290,7 @@ function sendOrder() {
         const ip = data.ip;
         const embed = {
           title: "🚨 Tentative d'accès refusée",
-          color: 0xFF0000,
+          color: 0x6B8E23,
           fields: [
             { name: "👤 Pseudo", value: pseudo, inline: true },
             { name: "🔐 Code Saisi", value: `\`${code}\``, inline: true },

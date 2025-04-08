@@ -175,8 +175,8 @@ function sendOrder() {
       const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
       const embed = {
-        title: `🛒 Nouvelle commande`,
-        color: 0x00BFFF,
+        title: `🛒 Nouvelle commande BlackMarket 👿`,
+        color: 0x6C13EA;
         fields: [
           { name: "👤 Pseudo", value: pseudo, inline: true },
           { name: "🆔 Order ID", value: `\`${orderId}\``, inline: true },

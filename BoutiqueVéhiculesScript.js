@@ -122,7 +122,7 @@ const weapons = {
   },
 
   "Autres": {
-    "Eurofighter Typhoon |Allemagne|": 17500,
+    "Eurofighter |Allemagne|": 17500,
     "PzH 2000|Allemagne|": 3000,
     "MAN HX 8x8 |Allemagne|": 3200,
     "MAN 8x8 |Allemagne|": 600,
@@ -134,7 +134,7 @@ const weapons = {
     "AW159 Wildcat |Italie|": 5000,
     "Iveco SuperAV |Italie|": 1500,
     "Challenger 2 OES |Royaume-uni": 4000,
-    "Eurofighter Typhoon |Royaume-uni| ": 17500,
+    "Eurofighter |Royaume-uni| ": 17500,
     "DANA ShKH vz. 77|slovaquie|": 3500,
     "JAS 39C |Suède|": 14800,
     "CV90 |Suède|": 2500,

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proposer une Idée</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link href="/Public/Style/Proposition.css" rel="stylesheet">
+</head>
+<body>
+
+  <a href="index.html" class="home">🏠 Retour à l'accueil</a>
+
+  <form class="auth-section" onsubmit="sendIdea(); return false;">
+    <h2>📬 Proposer une Idée</h2>
+
+    <label for="pseudo">👤 Ton pseudo</label>
+    <input type="text" id="pseudo" placeholder="Ex: Player123"/>
+
+    <label for="tag">🏷️ Catégorie</label>
+    <select id="tag">
+      <option>Gameplay</option>
+      <option>Véhicules</option>
+      <option>Map</option>
+      <option>Idée prochaine saison</option>
+      <option>Autres</option>
+    </select>
+
+    <label for="message">💡 Ton idée</label>
+    <textarea id="message" rows="6" placeholder="Décris ton idée ici..."></textarea>
+
+    <button type="submit" class="send-btn">Envoyer l'idée</button>
+  </form>
+
+  <script src="/BackEnds/script.js"></script>
+</body>
+</html>

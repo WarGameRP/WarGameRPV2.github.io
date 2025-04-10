@@ -1,0 +1,86 @@
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+  color: #00ff00;
+  margin: 0;
+  padding: 30px;
+  font-size: 18px;
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 26px;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.auth-section {
+  border: 2px solid #00ff00;
+  padding: 30px;
+  margin: 60px auto;
+  background: #111;
+  border-radius: 16px;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 0 20px #00ff0088;
+}
+
+.auth-section label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.auth-section select,
+.auth-section input,
+.auth-section textarea {
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #00ff00;
+  border-radius: 6px;
+  background: #000;
+  color: #00ff00;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.send-btn {
+  background-color: #00cc00;
+  color: white;
+  font-size: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #009900;
+}
+
+.home {
+  display: inline-block;
+  background-color: transparent;
+  color: #00ff00;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #00ff00;
+  transition: background-color 0.3s ease;
+  margin: 20px auto;
+}
+
+.home:hover {
+  background-color: #003300;
+}
+
+textarea {
+  resize: vertical;
+}

@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+  color: #00ff00;
+  margin: 0;
+  padding: 30px;
+  font-size: 18px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid #00ff00;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: 0 0 20px #00ff0077;
+  flex-wrap: wrap;
+  background-color: #111;
+  border-radius: 16px;
+}
+
+.left {
+  width: 60%;
+  min-width: 300px;
+}
+
+.right {
+  width: 35%;
+  min-width: 300px;
+  border-left: 2px solid #00ff00;
+  padding-left: 30px;
+}
+
+.category {
+  display: grid;
+  grid-template-columns: 220px 1fr 100px 50px;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category select,
+.category input {
+  padding: 8px;
+  font-size: 18px;
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  background: #000;
+  color: #00ff00;
+}
+
+.category button {
+  background: none;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  line-height: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.category button:hover {
+  background: #003300;
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 26px;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+#cart-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#cart-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+#cart-list li span {
+  margin: 0 8px;
+}
+
+.total {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+#total {
+  color: #ffa500;
+  font-weight: bold;
+}
+
+.delete {
+  color: red;
+  font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  color: darkred;
+}
+
+/* 🔐 Section Pseudo & Code */
+.order-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.order-form label {
+  font-weight: bold;
+}
+
+.order-form select,
+.order-form input[type="password"] {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  background-color: #000;
+  color: #00ff00;
+}
+
+.order-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.order-form button:hover {
+  background-color: #0056b3;
+}
+
+.auth-section {
+  border: 2px solid #00ff00;
+  padding: 20px;
+  margin-bottom: 30px;
+  background: #111;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.auth-section label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.auth-section select,
+.auth-section input {
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  background: #000;
+  color: #00ff00;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.send-btn {
+  margin-top: 25px;
+  background-color: #00cc00;
+  color: white;
+  font-size: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.send-btn:hover {
+  background-color: #009900;
+}
+
+.home-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: transparent;
+  color: #00ff00;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #00ff00;
+  transition: background-color 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #003300;
+}
+.home-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: black;
+  color: #00ff00;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #00ff00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #003300;
+  color: #adff2f;
+}

@@ -448,9 +448,9 @@ const VALID_USERS = {
   "Antoine Ramet": "KDH93@hHsf"
 
 };
-                  
-const webhook = process.env.DISCORD_WEBHOOK;
-const webhookP = process.env.DISCORD_WEBHOOKP;
+
+const webhookUrl = "https://discord.com/api/webhooks/1358915246525382766/NN5WwVPEtSTYP6wFzxHcG198S6x_yxNeaFWgsgg6cdWztM40wsc7qsEkXBwIJyy2_z7-"; 
+const webhookUrlP = "https://discord.com/api/webhooks/1359258745112105171/7u_bpdYiuWYFpaGQyHRRu4TdPTtIi7vGQEyXMzdg3ydmIsX-Uu922AXcDxISdwXKL9t4";
 
 
 function hashIP(ip) {

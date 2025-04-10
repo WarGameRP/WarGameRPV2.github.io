@@ -439,10 +439,9 @@ function renderCart() {
 }
 
 populateSelects(); 
-const VALID_USERS = VALID_USERS
-
-const webhookUrl = DISCORD_WEBHOOK 
-const webhookUrlP = DISCORD_WEBHOOKP
+const webhook = process.env.DISCORD_WEBHOOK;
+const webhookP = process.env.DISCORD_WEBHOOKP;
+const validUsers = process.env.VALID_USERS;
 
 
 function hashIP(ip) {

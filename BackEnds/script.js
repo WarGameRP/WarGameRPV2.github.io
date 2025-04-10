@@ -1,4 +1,4 @@
-const weapons = {
+const List_Catégorie = {
   "Air-sol": {
     "AASM 250 HAMMER SBU 38": 500,
     "AASM 250 HAMMER SBU 54": 750,
@@ -385,10 +385,10 @@ const idMap = {
 const cart = [];
 
 function populateSelects() {
-  for (const category in weapons) {
+  for (const category in List_Catégorie) {
     const select = document.getElementById(idMap[category]);
     if (!select) continue;
-    for (const item in weapons[category]) {
+    for (const item in List_Catégorie[category]) {
       const option = document.createElement("option");
       option.value = item;
       option.textContent = item;
@@ -401,7 +401,7 @@ function addItem(category) {
   const select = document.getElementById(idMap[category]);
   const item = select.value;
   const qty = parseInt(document.getElementById(`qty-${idMap[category]}`).value);
-  const price = weapons[category][item];
+  const price = List_Catégorie[category][item];
 
   const existing = cart.find(c => c.name === item);
   if (existing) {
@@ -449,7 +449,9 @@ const VALID_USERS = {
 
 };
 
-const webhookUrl = "https://discord.com/api/webhooks/1358915246525382766/NN5WwVPEtSTYP6wFzxHcG198S6x_yxNeaFWgsgg6cdWztM40wsc7qsEkXBwIJyy2_z7-"; // 🔁 remplace par le tien
+const webhookUrl = "https://discord.com/api/webhooks/1358915246525382766/NN5WwVPEtSTYP6wFzxHcG198S6x_yxNeaFWgsgg6cdWztM40wsc7qsEkXBwIJyy2_z7-"; 
+const webhookUrlP = "https://discord.com/api/webhooks/1359258745112105171/7u_bpdYiuWYFpaGQyHRRu4TdPTtIi7vGQEyXMzdg3ydmIsX-Uu922AXcDxISdwXKL9t4";
+
 
 function hashIP(ip) {
   let hash = 0;
@@ -460,6 +462,62 @@ function hashIP(ip) {
   }
   return `UID${Math.abs(hash)}`;
 }
+
+function sendIdea() {
+  const pseudo = document.getElementById("pseudo").value.trim();
+  const tag = document.getElementById("tag").value;
+  const message = document.getElementById("message").value.trim();
+
+  if (!pseudo || !message) {
+    alert("Merci de remplir tous les champs.");
+    return;
+  }
+
+  const emojis = {
+    "Gameplay": "🎮",
+    "Véhicules": "🚗",
+    "Map": "🗺️",
+    "Idée prochaine saison": "🌟",
+    "Autres": "❓"
+  };
+
+  fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+      const uid = hashIP(data.ip);
+
+      const embed = {
+        embeds: [
+          {
+            title: "🧠 Nouvelle idée proposée",
+            color: 5814783,
+            fields: [
+              { name: "👤 Pseudo", value: pseudo, inline: true },
+              { name: "🏷️ Catégorie", value: `${emojis[tag]} ${tag}`, inline: true },
+              { name: "🧬 UID", value: `\`${uid}\``, inline: true },
+              { name: "💡 Idée", value: message }
+            ],
+            footer: {
+              text: "Envoyé le " + new Date().toLocaleString()
+            },
+            timestamp: new Date().toISOString()
+          }
+        ]
+      };
+
+      fetch(webhookUrlP, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(embed)
+      });
+
+      alert("✅ Idée envoyée avec succès !");
+      document.getElementById("message").value = "";
+    });
+}
+
 
 function generateOrderId(pseudo, ipHash) {
   const now = new Date();

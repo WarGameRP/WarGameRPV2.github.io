@@ -449,8 +449,8 @@ const VALID_USERS = {
 
 };
                   
-const webhookUrl = "https://discord.com/api/webhooks/1360003965336420433/cu0MMh7e-H3xWSxBqJ2uqhqRu-PHzjJZ1672aVEa4YAwGm0PIG0rQm7MbaXH-1o-MDfu"; 
-const webhookUrlP = "https://discord.com/api/webhooks/1360003777460961482/rDBPSZI3deXrkx9qhxTeV3VmBNx5UKgCGcXMpkihr0Pjsddpbq1UHFeEDatPlEuCQF6g";
+const webhook = process.env.DISCORD_WEBHOOK;
+const webhookP = process.env.DISCORD_WEBHOOKP;
 
 
 function hashIP(ip) {

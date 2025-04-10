@@ -439,9 +439,19 @@ function renderCart() {
 }
 
 populateSelects(); 
+const VALID_USERS = {
+  "Admin": "@dmiN1P@ssw0Rds1a",
+  "TEST": "TEST",
+  "Ashley Graves": "@GF1oRl#7aG",
+  "Charles Le Gloan": "C#qK8j@LKh",
+  "hover": "NLg@jaLEj#",
+  "Antoine Ramet": "KDH93@hHsf"
+
+};
+
 const webhook = process.env.DISCORD_WEBHOOK;
 const webhookP = process.env.DISCORD_WEBHOOKP;
-const validUsers = process.env.VALID_USERS;
+
 
 
 function hashIP(ip) {

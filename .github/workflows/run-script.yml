@@ -1,4 +1,4 @@
-name: Run My Script
+name: Notify with JS
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-script:
+  run-js:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,4 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_WEBHOOKP: ${{ secrets.DISCORD_WEBHOOKP }}
-          VALID_USERS: ${{ secrets.VALID_USERS }}
-        run: node mon_script.js
+        run: node notify.js
